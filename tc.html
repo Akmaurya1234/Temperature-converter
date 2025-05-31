@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Temperature Converter</title>
+    <script type="text/javascript">
+        function convert() {
+            var t = document.getElementById("temp").value;
+            var choice = document.getElementById("select").value;
+            var result = document.getElementById("cnvrtemp");
+
+            if (t === '') {
+                cnvrtemp.innerHTML = "Please enter value!";
+                document.getElementById("cnvrtemp").focus();
+                return;
+            }
+            if (choice === "Type") {
+                cnvrtemp.innerHTML = "Please select type!";
+                return;
+            }
+            t = parseFloat(t);
+            let convertedTemp;
+
+            if (choice === 'Fehrenheit') {
+                convertedTemp = (t - 32) * 5 / 9;
+                cnvrtemp.innerHTML = `${convertedTemp.toFixed(4)} °C`;
+            } else {
+                convertedTemp = (t * 9 / 5) + 32;
+                cnvrtemp.innerHTML = `${convertedTemp.toFixed(4)} °F`;
+            }
+        }
+    </script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            background-color: #f0f8ff;
+            padding: 20px;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 400px;
+            background: whitesmoke;
+            padding: 20px;
+            text-align: center;
+            font-size: 18px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px gray;
+            font-family: sans-serif;
+            font-weight: 600;
+        }
+
+        input,
+        select {
+            width: 100%;
+            padding: 10px;
+            font-size: 16px;
+            border-radius: 10px;
+            border: 1px solid black;
+            background-color: #444;
+            color: white;
+            margin: 10px 0px;
+            
+        }
+
+        input::placeholder {
+            color: white;
+        }
+
+        #convertbtn {
+            background-color: green;
+            font-size: 18px;
+            height: 45px;
+            transition: .5s all;
+            cursor: pointer;
+            border: none;
+            margin-top: 10px;
+        }
+
+        #convertbtn:hover {
+            background-color: darkgreen;
+            box-shadow: 2px 2px 20px green, 2px 2px 20px greenyellow;
+            letter-spacing: 2px;
+        }
+
+        h3 {
+            color: green;
+            font-size: 24px;
+            margin-bottom: 15px;
+        }
+
+        h5 {
+            font-size: 20px;
+            margin: 7px 0px;
+        }
+
+        /* Responsive Design */
+        @media screen and (max-width: 480px) {
+            .container {
+                font-size: 16px;
+                padding: 15px;
+            }
+
+            h3 {
+                font-size: 22px;
+            }
+
+            h5 {
+                font-size: 18px;
+            }
+
+            input,
+            select {
+                font-size: 14px;
+            }
+
+            #convertbtn {
+                font-size: 16px;
+                height: 40px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <form>
+            <h3>Temperature Converter</h3>
+            <label for="temperature">Degrees</label>
+            <input type="number" placeholder="Enter Temperature" id="temp" />
+            
+            <label for="types">Type</label>
+            <select id="select">
+                <option value="Type">Type</option>
+                <option value="Fehrenheit">Fehrenheit</option>
+                <option value="Celsius">Celsius</option>
+            </select>
+
+            <h5 id="cnvrtemp">--</h5>
+
+            <input type="button" value="Convert" onclick="convert()" id="convertbtn" />
+        </form>
+    </div>
+</body>
+
+</html>
